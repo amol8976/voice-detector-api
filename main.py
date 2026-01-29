@@ -52,3 +52,6 @@ def detect_voice(
         "model_version": "v1.0",
         "timestamp": int(time.time())
     }
+
+import secrets
+print("vd_live_" + secrets.token_urlsafe(24))
