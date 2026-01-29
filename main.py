@@ -13,8 +13,8 @@ app.state.limiter = limiter
 
 # ⚠️ TEMP STORE (Replace with DB later)
 API_KEYS = {
-    "76f8f9b66fad159822cc7756e1af4d27e03b4704fc95f63152730d5907aa48ab": {
-        "owner": "red",
+    "aca5afe0613152182835af9ad4e0df25494274061750cde29e2b9d8e8f70fb22": {
+        "owner": "local-test",
         "rate_limit": "10/minute"
     }
 }
