@@ -13,8 +13,8 @@ app.state.limiter = limiter
 
 # ⚠️ TEMP STORE (Replace with DB later)
 API_KEYS = {
-    hashlib.sha256("vd_live_demo123".encode()).hexdigest(): {
-        "owner": "demo-user",
+    "76f8f9b66fad159822cc7756e1af4d27e03b4704fc95f63152730d5907aa48ab": {
+        "owner": "red",
         "rate_limit": "10/minute"
     }
 }
@@ -53,5 +53,3 @@ def detect_voice(
         "timestamp": int(time.time())
     }
 
-import secrets
-print("vd_live_" + secrets.token_urlsafe(24))
