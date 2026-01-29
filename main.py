@@ -13,7 +13,7 @@ app.state.limiter = limiter
 
 # ⚠️ TEMP STORE (Replace with DB later)
 API_KEYS = {
-    "aca5afe0613152182835af9ad4e0df25494274061750cde29e2b9d8e8f70fb22": {
+    "9dd8bd1b7f78def3c3fb4fde09ce1ce23dae3ad0e55af9d3c7c65aeb1b0baaf9": {
         "owner": "local-test",
         "rate_limit": "10/minute"
     }
@@ -23,11 +23,21 @@ class DetectRequest(BaseModel):
     audio_base64: str
     language: str
 
-def validate_api_key(x_api_key: str = Header(...)):
+def validate_api_key(x_api_key: str = Header(None)):
+    print("RAW API KEY RECEIVED:", x_api_key)
+
+    if not x_api_key:
+        raise HTTPException(status_code=401, detail="API Key missing")
+
     key_hash = hashlib.sha256(x_api_key.encode()).hexdigest()
+    print("HASH GENERATED:", key_hash)
+    print("HASHES STORED:", list(API_KEYS.keys()))
+
     if key_hash not in API_KEYS:
         raise HTTPException(status_code=401, detail="Invalid API Key")
+
     return API_KEYS[key_hash]
+
 
 @app.post("/api/v1/voice/detect")
 @limiter.limit("10/minute")
